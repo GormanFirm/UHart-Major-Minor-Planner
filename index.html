@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UHart majors and minors: Marketing, Communication, English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#EEF1F5; --paper:#FFFFFF; --ink:#18223A; --muted:#58627A; --line:#D5DBE5;
+  --mkt:#B5122B; --mkt-soft:#FBE7EA;
+  --com:#14708A; --com-soft:#E1F1F5;
+  --eng:#5E4593; --eng-soft:#ECE6F6;
+  --strong:#1D7A46; --good:#8A6A10; --check:#9A3B12;
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body:"Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121826; --paper:#1B2335; --ink:#E8ECF4; --muted:#A3ADC2; --line:#2E3850;
+    --mkt:#F06A7E; --mkt-soft:#3A1E27; --com:#4FC0DB; --com-soft:#15303A; --eng:#B39BEA; --eng-soft:#2A2340;
+    --strong:#5BCB8B; --good:#E3BE5A; --check:#F0905E;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121826; --paper:#1B2335; --ink:#E8ECF4; --muted:#A3ADC2; --line:#2E3850;
+  --mkt:#F06A7E; --mkt-soft:#3A1E27; --com:#4FC0DB; --com-soft:#15303A; --eng:#B39BEA; --eng-soft:#2A2340;
+  --strong:#5BCB8B; --good:#E3BE5A; --check:#F0905E;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 18px 64px}
+h1,h2,h3{font-family:var(--display);line-height:1.1;margin:0}
+h1{font-size:clamp(2rem,6vw,3.4rem);font-weight:800;letter-spacing:-.02em;max-width:18ch}
+h2{font-size:clamp(1.4rem,3.4vw,2rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.25rem;font-weight:700}
+p{margin:0}
+.lede{margin-top:14px;max-width:62ch;color:var(--muted);font-size:1.05rem}
+.note{margin-top:18px;max-width:70ch;font-size:.92rem;color:var(--muted);border-left:3px solid var(--line);padding-left:12px}
+section{margin-top:56px}
+.sec-intro{margin-top:8px;color:var(--muted);max-width:64ch}
+
+/* Majors */
+.majors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px}
+.major{background:var(--paper);border:1px solid var(--line);border-top:6px solid var(--c);border-radius:6px;padding:20px}
+.major .deg{display:inline-block;margin-top:8px;font-size:.85rem;font-weight:600;color:var(--c);background:var(--soft);padding:3px 9px;border-radius:999px}
+.major dl{margin:16px 0 0}
+.major dt{font-weight:600;font-size:.9rem;margin-top:12px}
+.major dd{margin:2px 0 0;color:var(--muted);font-size:.92rem}
+.m-mkt{--c:var(--mkt);--soft:var(--mkt-soft)}
+.m-com{--c:var(--com);--soft:var(--com-soft)}
+.m-eng{--c:var(--eng);--soft:var(--eng-soft)}
+
+/* Minors */
+.minors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px}
+.minor{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.minor .credits{font-family:var(--display);font-weight:800;font-size:2.2rem;line-height:1}
+.minor .credits small{font-family:var(--body);font-size:.85rem;font-weight:500;color:var(--muted);margin-left:6px}
+.minor ul{margin:0;padding-left:18px;color:var(--muted);font-size:.93rem}
+.minor ul li{margin:2px 0}
+.minor .watch{font-size:.88rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+.fitrow{display:flex;flex-wrap:wrap;gap:6px}
+.fit{font-size:.8rem;font-weight:600;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;font-family:var(--body)}
+.fit b{font-weight:600}
+.fit .lvl-strong{color:var(--strong)} .fit .lvl-good{color:var(--good)} .fit .lvl-check{color:var(--check)}
+.fit:hover{border-color:var(--ink)}
+
+/* Explorer */
+.explorer{margin-top:20px;background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.pickers{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--line)}
+.picker{padding:16px 18px}
+.picker + .picker{border-left:1px solid var(--line)}
+.picker legend{font-weight:600;font-size:.9rem;margin-bottom:8px;padding:0}
+.picker fieldset{border:0;margin:0;padding:0}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{cursor:pointer;padding:8px 13px;border:1px solid var(--line);border-radius:999px;font-size:.92rem;font-weight:500;user-select:none}
+.seg input:checked + label{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.seg input:focus-visible + label{outline:3px solid var(--com);outline-offset:2px}
+.combo{padding:22px 20px 26px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px}
+.combo-title{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,4vw,2.3rem);letter-spacing:-.015em;line-height:1.05}
+.combo-title .plus{color:var(--muted);font-weight:500}
+.badge{display:inline-block;margin-top:12px;font-size:.85rem;font-weight:700;padding:4px 11px;border-radius:999px;border:2px solid currentColor}
+.badge.strong{color:var(--strong)} .badge.good{color:var(--good)} .badge.check{color:var(--check)}
+.combo .summary{margin-top:14px;max-width:56ch}
+.combo h4{font-family:var(--display);font-size:1rem;margin:18px 0 6px}
+.combo ul{margin:0;padding-left:18px;font-size:.94rem}
+.combo ul li{margin:3px 0}
+.timeline{list-style:none;padding:0!important;margin:0;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 12px 18px!important;margin:0!important}
+.timeline li::before{content:"";position:absolute;left:-6px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--paper);border:2px solid var(--ink)}
+.timeline strong{display:block;font-size:.85rem}
+.timeline span{color:var(--muted);font-size:.92rem}
+.stats{display:flex;gap:22px;flex-wrap:wrap;margin-top:16px}
+.stat{font-size:.85rem;color:var(--muted)}
+.stat b{display:block;font-family:var(--display);font-size:1.5rem;color:var(--ink);font-weight:800}
+
+footer{margin-top:56px;font-size:.88rem;color:var(--muted);max-width:70ch}
+footer a{color:inherit}
+
+@media (max-width:860px){
+  .majors{grid-template-columns:1fr}
+  .combo{grid-template-columns:1fr;gap:6px}
+}
+@media (max-width:620px){
+  .minors{grid-template-columns:1fr}
+  .pickers{grid-template-columns:1fr}
+  .picker + .picker{border-left:0;border-top:1px solid var(--line)}
+}
+@media (prefers-reduced-motion:no-preference){
+  .combo.swap{animation:swap .28s ease-out}
+  @keyframes swap{from{opacity:.25}to{opacity:1}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Three majors, four minors, twelve ways to combine them</h1>
+  <p class="lede">A planning guide for Marketing, Communication, and English at the University of Hartford, with minors in Visual Communication Design, Cinema, Digital Marketing, or another Hartford Art School minor.</p>
+  <p class="note">Built from UHart's public program pages, not the official catalog. Some details (like the exact VCD minor course list and portfolio rules) aren't published online and are marked as unconfirmed. Check the 2026–27 catalog at catalog.hartford.edu and DegreeWorks before registering.</p>
+</header>
+
+<section aria-labelledby="majors-h">
+  <h2 id="majors-h">The majors</h2>
+  <p class="sec-intro">What each degree requires on its own, before adding a minor.</p>
+  <div class="majors">
+    <article class="major m-mkt">
+      <h3>Marketing</h3>
+      <span class="deg">BS in Business Administration · Barney School</span>
+      <dl>
+        <dt>Total</dt><dd>120 credits, including gen ed, the business core, and the major.</dd>
+        <dt>Business core</dt><dd>World of Business, Intro to Quantitative Methods for Business, Financial and Managerial Accounting, Management and Organizational Behavior, Business and Professional Communication, Exploring and Planning Career Options.</dd>
+        <dt>Required marketing</dt><dd>Consumer Behavior, International Marketing, Marketing Research, Marketing Strategy (capstone), Marketing Internship.</dd>
+        <dt>Electives</dt><dd>Sales Management, Marketing Communications, Digital Marketing, Digital Marketing Analytics, Marketing Analytics.</dd>
+        <dt>Best for</dt><dd>Business-side roles: brand management, market research, sales, marketing strategy.</dd>
+      </dl>
+    </article>
+    <article class="major m-com">
+      <h3>Communication</h3>
+      <span class="deg">BA · College of Arts and Sciences</span>
+      <dl>
+        <dt>Total</dt><dd>120 credits; Advertising and PR or Media Strategies emphasis is 45 credits.</dd>
+        <dt>Emphases</dt><dd>Advertising and Public Relations, Media Strategies, or Communication Studies.</dd>
+        <dt>Example courses</dt><dd>Communication and Advertising, Introduction to Public Relations, The Agency: Advertising Copywriting and Layout.</dd>
+        <dt>Hands-on</dt><dd>Campaigns for real clients, Crested Communications (student-run agency), national AAF and PRSSA competitions.</dd>
+        <dt>Best for</dt><dd>Agency work, advertising, PR, social media, and media strategy.</dd>
+      </dl>
+    </article>
+    <article class="major m-eng">
+      <h3>English</h3>
+      <span class="deg">BA · College of Arts and Sciences</span>
+      <dl>
+        <dt>Total</dt><dd>120 credits; the major is 36, leaving about 26 credits of free electives.</dd>
+        <dt>Core (18)</dt><dd>Two intro literature courses, sophomore learning community, internship, senior capstone, literature elective.</dd>
+        <dt>Creative Writing emphasis (18)</dt><dd>One professional writing or grammar course, four workshops (poetry, fiction, creative nonfiction, playwriting), literature elective.</dd>
+        <dt>Literature emphasis (18)</dt><dd>One professional writing or grammar course, one modern language course, five 300/400-level literature courses.</dd>
+        <dt>Best for</dt><dd>Writing, editing, publishing, content, and copywriting careers.</dd>
+      </dl>
+    </article>
+  </div>
+</section>
+
+<section aria-labelledby="minors-h">
+  <h2 id="minors-h">The minors</h2>
+  <p class="sec-intro">Each can be added to any of the three majors. Tap a fit label to see that combination below.</p>
+  <div class="minors" id="minor-list"></div>
+</section>
+
+<section aria-labelledby="combo-h">
+  <h2 id="combo-h">Try a combination</h2>
+  <p class="sec-intro">Pick a major and a minor to see what the four years would look like.</p>
+  <div class="explorer" id="explorer">
+    <div class="pickers">
+      <div class="picker"><fieldset><legend>Major</legend><div class="seg" id="pick-major"></div></fieldset></div>
+      <div class="picker"><fieldset><legend>Minor</legend><div class="seg" id="pick-minor"></div></fieldset></div>
+    </div>
+    <div class="combo" id="combo" aria-live="polite"></div>
+  </div>
+</section>
+
+<footer>
+  <p>Sources: UHart program pages for Marketing, Communication, English, Cinema, Visual Communication Design, Digital Marketing, and the Exploratory Curriculum (gen ed). Questions about art minors: artschool@hartford.edu. Catalog questions: registrar@hartford.edu.</p>
+</footer>
+</div>
+
+<script>
+const MAJORS = {
+  mkt:{name:"Marketing", deg:"BS"},
+  com:{name:"Communication", deg:"BA"},
+  eng:{name:"English", deg:"BA"}
+};
+const MINORS = {
+  vcd:{name:"Visual Communication Design", short:"VCD", credits:18, school:"Hartford Art School",
+    blurb:"Graphic design: typography, layout, branding, and design systems.",
+    courses:["DES 221 Type I","DES 222 Image Making and Meaning","DES 300 Type II","DES 334 Design Systems","DES 335 Experimental Typography","DES 445 Design Problem Solving (400-level)"],
+    watch:"Exact minor course list and whether non-art students need a portfolio are unconfirmed. Courses are sequential, so start by sophomore year."},
+  cin:{name:"Cinema", short:"Cinema", credits:15, school:"College of Arts and Sciences",
+    blurb:"Film studies, filmmaking, or a mix of both.",
+    courses:["CIN 150 Introduction to Film (required)","Film History, Film Analysis, or World Cinema","Introduction to Filmmaking","Film Directors, Film Genres, or Topics in Filmmaking"],
+    watch:"Choose production courses if you want hands-on video skills; studies courses if you want analysis and writing."},
+  dm:{name:"Digital Marketing", short:"Digital Marketing", credits:12, school:"Barney School of Business",
+    blurb:"SEO, social media, content, and analytics.",
+    courses:["Introduction to Marketing (non-Barney students)","Digital Marketing","Digital Marketing Analytics","Marketing Analytics or Marketing Communications"],
+    watch:"Requires a 2.0 GPA; courses can't double count between two minors. Non-Barney prerequisites likely include EC 101 and M 110."},
+  art:{name:"Other art minor", short:"Art minor", credits:18, school:"Hartford Art School",
+    blurb:"Photography, Illustration, Animation and Game Art, Painting, and more.",
+    courses:["Photography: e.g., PHO 220 Intro Photography","Illustration: drawing and narrative image-making","Animation and Game Art: 2D and 3D animation","Painting, Printmaking, Ceramics, Sculpture also offered"],
+    watch:"Each is 18 credits. Course lists and entry rules for non-art majors vary; ask the Art School."}
+};
+
+const COMBOS = {
+ "mkt-vcd":{fit:"strong", summary:"Strategy plus hands-on design. You can plan a campaign and make the visuals for it, which stands out for brand and creative roles.",
+   plan:[["Year 1","Business core, gen ed, Intro to Marketing"],["Year 2","Consumer Behavior, accounting; start DES 221 and DES 222"],["Year 3","Marketing Research, Marketing Communications; DES 300 and DES 334"],["Year 4","Marketing Strategy capstone; 400-level DES course; internship at a brand or agency"]],
+   careers:["Brand marketing coordinator","Creative strategist","In-house marketing designer","Art direction track"],
+   watch:["The business core leaves fewer free electives, so 18 studio credits takes planning","Studio seats may favor art majors; register early"], extra:18},
+ "mkt-cin":{fit:"strong", summary:"Marketing with video skills. Strong for video ads, social video, and brand storytelling.",
+   plan:[["Year 1","Business core, gen ed, CIN 150 Intro to Film"],["Year 2","Consumer Behavior; Intro to Filmmaking"],["Year 3","Marketing Communications, Digital Marketing; Film Analysis or Topics in Filmmaking"],["Year 4","Marketing Strategy capstone; final Cinema course; video-focused internship"]],
+   careers:["Video marketing specialist","Social media and content producer","Brand storytelling at an agency"],
+   watch:["Lean toward production courses for portfolio work"], extra:15},
+ "mkt-dm":{fit:"check", summary:"Barney offers a Digital Marketing track for Marketing majors, but its courses are also Marketing electives, so the minor adds less new material.",
+   plan:[["Year 1–2","Business core, Intro to Marketing, Consumer Behavior"],["Year 3","Digital Marketing, Digital Marketing Analytics"],["Year 4","Marketing Analytics or Marketing Communications; Marketing Strategy capstone"]],
+   careers:["Digital marketing coordinator","SEO and analytics specialist"],
+   watch:["Ask whether these courses can count for both the major and the minor","A creative minor (VCD or Cinema) may add more distinct skills"], extra:9},
+ "mkt-art":{fit:"good", summary:"Photography is the most marketing-friendly art minor: product shots, social content, and campaign imagery.",
+   plan:[["Year 1–2","Business core, gen ed; start the art minor's intro course (e.g., PHO 220)"],["Year 3","Marketing electives; intermediate studio courses"],["Year 4","Marketing Strategy capstone; finish the minor's upper-level course"]],
+   careers:["Content creator","Social media marketer","E-commerce and product marketing"],
+   watch:["Confirm entry rules for non-art majors","Illustration or Animation fit more niche marketing roles"], extra:18},
+ "com-vcd":{fit:"strong", summary:"The classic ad-agency pairing: write and plan the campaign in Communication, design it in VCD.",
+   plan:[["Year 1","Gen ed, intro Communication courses"],["Year 2","Communication and Advertising, Intro to PR; DES 221 and DES 222"],["Year 3","Advertising Copywriting and Layout; DES 300 and DES 334; join Crested Communications"],["Year 4","Campaigns class with real clients; 400-level DES course; agency internship"]],
+   careers:["Junior designer or copywriter","Art director track","Social and brand content"],
+   watch:["Confirm portfolio rules for the VCD minor","Start DES courses by sophomore year"], extra:18},
+ "com-cin":{fit:"strong", summary:"Campaigns plus video production, and both are in the same college, which can make scheduling easier.",
+   plan:[["Year 1","Gen ed, intro Communication; CIN 150 Intro to Film"],["Year 2","Ad/PR or Media Strategies core; Intro to Filmmaking"],["Year 3","Emphasis courses; Topics in Filmmaking; Crested Communications"],["Year 4","Campaigns class; final Cinema course; production or agency internship"]],
+   careers:["Video content producer","Social media manager","Media planner"],
+   watch:["Media Strategies doesn't require production, so Cinema fills that gap"], extra:15},
+ "com-dm":{fit:"strong", summary:"Creative campaigns plus the data side: SEO, social, and analytics. At 12 credits it's the lightest minor and leaves room for a second.",
+   plan:[["Year 1","Gen ed including M 110; EC 101 (likely prerequisite)"],["Year 2","Ad/PR core; Introduction to Marketing"],["Year 3","Digital Marketing, Digital Marketing Analytics"],["Year 4","Marketing Analytics or Marketing Communications; campaigns class; internship"]],
+   careers:["Digital marketing coordinator","Social media strategist","Agency account roles"],
+   watch:["Take the Barney prerequisites early","Room remains to add VCD or Cinema"], extra:12},
+ "com-art":{fit:"good", summary:"Photography or Illustration gives you original visuals for campaigns and social content.",
+   plan:[["Year 1–2","Gen ed, Communication core; intro art course"],["Year 3","Emphasis courses; intermediate studio work"],["Year 4","Campaigns class; upper-level studio course; portfolio-building internship"]],
+   careers:["Content creator","PR and social imagery","Agency creative support"],
+   watch:["Confirm entry rules for non-art majors"], extra:18},
+ "eng-vcd":{fit:"good", summary:"Words plus design. Points toward publishing, editorial design, and content roles, with plenty of elective room.",
+   plan:[["Year 1","Gen ed, two intro literature courses"],["Year 2","Sophomore learning community, writing workshops; DES 221 and DES 222"],["Year 3","Professional writing course, workshops; DES 300 and DES 334; internship"],["Year 4","Senior capstone (a designed zine or chapbook could tie both together); 400-level DES course"]],
+   careers:["Editorial or publishing designer","Content designer","Copywriter with design skills"],
+   watch:["About 26 free electives remain, enough for a second minor","Capstone overlap needs department approval"], extra:18},
+ "eng-cin":{fit:"good", summary:"Storytelling across page and screen. Good for screenwriting, film criticism, or media writing.",
+   plan:[["Year 1","Gen ed, intro literature; CIN 150 Intro to Film"],["Year 2","Workshops (Playwriting fits well); Film Analysis or Film History"],["Year 3","Literature electives; Intro to Filmmaking or Film Genres; internship"],["Year 4","Senior capstone (a screenplay could fit); final Cinema course"]],
+   careers:["Screenwriting and development","Film and media criticism","Video scriptwriter"],
+   watch:["Ask whether a film-as-literature course could count toward both"], extra:15},
+ "eng-dm":{fit:"strong", summary:"Strong writing plus digital marketing skills is a direct route into content marketing and copywriting.",
+   plan:[["Year 1","Gen ed including M 110; EC 101 (likely prerequisite); intro literature"],["Year 2","Workshops; Introduction to Marketing"],["Year 3","Digital Marketing, Digital Marketing Analytics; professional writing course"],["Year 4","Marketing Analytics or Marketing Communications; senior capstone; internship"]],
+   careers:["Content marketer","Copywriter","SEO content strategist"],
+   watch:["Reports, Proposals, and Grants is a useful professional writing pick"], extra:12},
+ "eng-art":{fit:"good", summary:"Illustration plus Creative Writing suits children's books, comics, and zines; Photography suits magazine and features work.",
+   plan:[["Year 1–2","Gen ed, intro literature; intro art course"],["Year 2–3","Writing workshops; intermediate studio courses"],["Year 4","Senior capstone combining writing and images; upper-level studio course"]],
+   careers:["Author-illustrator","Editorial and features work","Independent publishing"],
+   watch:["Confirm entry rules for non-art majors"], extra:18}
+};
+const FIT_LABEL = {strong:"Strong fit", good:"Good fit", check:"Check overlap"};
+
+const minorList = document.getElementById("minor-list");
+Object.entries(MINORS).forEach(([k,m])=>{
+  const fits = Object.entries(MAJORS).map(([mk,mj])=>{
+    const c = COMBOS[mk+"-"+k];
+    return `<button class="fit" data-major="${mk}" data-minor="${k}" type="button">${mj.name}: <b class="lvl-${c.fit}">${FIT_LABEL[c.fit]}</b></button>`;
+  }).join("");
+  minorList.insertAdjacentHTML("beforeend",`
+    <article class="minor">
+      <h3>${m.name}</h3>
+      <div class="credits">${m.credits}<small>credits · ${m.school}</small></div>
+      <p>${m.blurb}</p>
+      <ul>${m.courses.map(c=>`<li>${c}</li>`).join("")}</ul>
+      <p class="watch">${m.watch}</p>
+      <div class="fitrow">${fits}</div>
+    </article>`);
+});
+
+function seg(id, items, name, def){
+  const el = document.getElementById(id);
+  Object.entries(items).forEach(([k,v])=>{
+    el.insertAdjacentHTML("beforeend",
+      `<input type="radio" name="${name}" id="${name}-${k}" value="${k}" ${k===def?"checked":""}><label for="${name}-${k}">${v.short||v.name}</label>`);
+  });
+  el.addEventListener("change", render);
+}
+seg("pick-major", MAJORS, "major", "com");
+seg("pick-minor", MINORS, "minor", "dm");
+
+function render(){
+  const mk = document.querySelector('input[name="major"]:checked').value;
+  const nk = document.querySelector('input[name="minor"]:checked').value;
+  const c = COMBOS[mk+"-"+nk], mj = MAJORS[mk], mn = MINORS[nk];
+  const el = document.getElementById("combo");
+  el.innerHTML = `
+    <div>
+      <div class="combo-title">${mj.name} ${mj.deg} <span class="plus">+</span> ${mn.name}</div>
+      <span class="badge ${c.fit}">${FIT_LABEL[c.fit]}</span>
+      <p class="summary">${c.summary}</p>
+      <div class="stats">
+        <div class="stat"><b>${c.extra}</b>minor credits</div>
+        <div class="stat"><b>120</b>total for the degree</div>
+      </div>
+      <h4>Possible careers</h4>
+      <ul>${c.careers.map(x=>`<li>${x}</li>`).join("")}</ul>
+      <h4>Watch for</h4>
+      <ul>${c.watch.map(x=>`<li>${x}</li>`).join("")}</ul>
+    </div>
+    <div>
+      <h4>What the four years look like</h4>
+      <ul class="timeline">${c.plan.map(([t,d])=>`<li><strong>${t}</strong><span>${d}</span></li>`).join("")}</ul>
+    </div>`;
+  el.classList.remove("swap"); void el.offsetWidth; el.classList.add("swap");
+}
+render();
+
+document.querySelectorAll(".fit").forEach(b=>b.addEventListener("click",()=>{
+  document.getElementById("major-"+b.dataset.major).checked = true;
+  document.getElementById("minor-"+b.dataset.minor).checked = true;
+  render();
+  document.getElementById("explorer").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
+}));
+</script>
+</body>
+</html>
